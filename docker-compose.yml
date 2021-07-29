@@ -38,8 +38,8 @@ services:
             start_period: 120s
         restart: unless-stopped
         
-    formulario:
-        container_name: web
+    web:
+        container_name: "web"
         build: .
         ports:
             - "8080:5000"
