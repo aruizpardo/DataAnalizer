@@ -1,0 +1,52 @@
+version: "3.9"
+services:
+    clickhouse:
+        container_name: "clickhouse"
+        image: "yandex/clickhouse-server"
+        ports:
+            - "8123:8123"
+            - "9000:9000"
+            - "9009:9009"
+        volumes:
+            - ./clickhouse/database:/var/lib/clickhouse
+            - ./clickhouse/logs:/var/log/clickhouse-server/
+            - ./clickhouse/config.xml:/etc/clickhouse-server/config.xml
+            - ./clickhouse/users.xml:/etc/clickhouse-server/users.xml
+        healthcheck:
+            test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123"]
+            interval: 30s
+            timeout: 5s
+            retries: 10
+            start_period: 120s
+        restart: unless-stopped
+
+    grafana:
+        container_name: "grafana"
+        image: "grafana/grafana:8.0.6"
+        ports:
+            - "3000:3000"
+        environment:
+            GF_INSTALL_PLUGINS: "grafana-simple-json-datasource,vertamedia-clickhouse-datasource"
+            GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS: "vertamedia-clickhouse-datasource"
+            GF_SECURITY_ADMIN_USER: "ruiz"
+            GF_SECURITY_ADMIN_PASSWORD: "ruiz"
+        healthcheck:
+            test: "wget -q -Y off -O /dev/null http://localhost:3000/login > /dev/null 2>&1"
+            interval: 30s
+            timeout: 5s
+            retries: 10
+            start_period: 120s
+        restart: unless-stopped
+        
+    formulario:
+        container_name: web
+        build: .
+        ports:
+            - "8080:5000"
+        volumes:
+            - ./flask:/app
+        restart: unless-stopped
+        depends_on: 
+            - clickhouse
+            - grafana
+    
