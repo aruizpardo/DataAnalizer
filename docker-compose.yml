@@ -45,6 +45,12 @@ services:
             - "8080:5000"
         volumes:
             - ./flask:/app
+        healthcheck:
+            test: "wget -q -Y off -O /dev/null http://localhost:5000/healthcheck > /dev/null 2>&1"
+            interval: 30s
+            timeout: 5s
+            retries: 10
+            start_period: 30s
         restart: unless-stopped
         depends_on: 
             - clickhouse

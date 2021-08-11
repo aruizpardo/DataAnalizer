@@ -1,2 +1,4 @@
 clickhouse/database/*
 clickhouse/logs/*
+
+flask/app/__pycache__/*

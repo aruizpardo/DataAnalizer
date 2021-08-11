@@ -6,7 +6,7 @@ WORKDIR /app
 RUN apt-get install bash
 
 # Instalar paquetes de Python
-RUN pip install -U Flask
+RUN pip install -U Flask pandas
 
 # Copiar ficheros
 COPY ./flask/ .

@@ -1,6 +1,52 @@
-<head>
-    <title>Hello World</title>
-</head>
-<body>
-    Hello World
-</body>
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario de gasto</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}">
+    </head>
+    <body>
+        <form id="gastos" method="POST" action="{{ url_for('insert_data') }}">
+            <table>
+                <tr>
+                    <td>
+                        <label for="motivo">Motivo: </label>
+                    </td>
+                    <td>
+                        <input required type="text" id="motivo" name="motivo"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="cantidad">Cantidad: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="cantidad" name="cantidad" value="0.00" min="0" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="categoria">Categoría: </label>
+                    </td>
+                    <td>
+                        <select required name="categoria" id="categoria" form="gastos">
+                            <option value="piso">Piso</option>
+                            <option value="comida">Comida</option>
+                            <option value="higiene">Higiene</option>
+                            <option value="viaje">Viaje</option>
+                            <option value="electronica">Electrónica</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="necesario">Necesario: </label>
+                    </td>
+                    <td>
+                        <input type="checkbox" id="necesario" name="necesario" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>
