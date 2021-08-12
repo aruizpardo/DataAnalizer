@@ -6,7 +6,8 @@ WORKDIR /app
 RUN apt-get install bash
 
 # Instalar paquetes de Python
-RUN pip install -U Flask pandas
+RUN pip install -U Flask
+RUN pip install pandas clickhouse-sqlalchemy==0.1.6 SQLAlchemy
 
 # Copiar ficheros
 COPY ./flask/ .
