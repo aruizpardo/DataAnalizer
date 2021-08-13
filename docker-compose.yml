@@ -12,6 +12,7 @@ services:
             - ./clickhouse/logs:/var/log/clickhouse-server/
             - ./clickhouse/config.xml:/etc/clickhouse-server/config.xml
             - ./clickhouse/users.xml:/etc/clickhouse-server/users.xml
+            - ./clickhouse/setup/create_tables.sh:/docker-entrypoint-initdb.d/create_tables.sh
         healthcheck:
             test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8123"]
             interval: 30s
