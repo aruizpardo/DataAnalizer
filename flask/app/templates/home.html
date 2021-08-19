@@ -1,0 +1,12 @@
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Pantalla inicial</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}">
+    </head>
+    <body>
+        <button onclick="location.href='{{ url_for('data_gastos') }}';">Gastos</button>
+        <button onclick="location.href='{{ url_for('data_bascula') }}';">Bascula</button>
+    </body>
+</html>

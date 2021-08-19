@@ -2,11 +2,11 @@
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>Datos insertados</title>
+        <title>Error al insertar datos</title>
         <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}">
     </head>
     <body>
-        <strong>Datos insertados</strong><br>
+        <strong>Hubo un error insertando los datos, revisa el log</strong><br>
         <button onclick="location.href='{{ url_for('home') }}';">Enviar más datos</button>
     </body>
 </html>

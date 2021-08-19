@@ -18,9 +18,20 @@ def insert_data(table, values):
    except Exception:
       return False
 
+
 @app.route('/')
+def home():
+   return render_template('home.html')
+
+
+@app.route('/data_gastos')
 def data_gastos():
    return render_template('data_gastos.html')
+
+
+@app.route('/data_bascula')
+def data_bascula():
+   return render_template('data_bascula.html')
 
 
 @app.route('/insert_data_gastos', methods=["POST"])
@@ -34,6 +45,24 @@ def insert_data_gastos():
    }
 
    return render_template('success_insert_data.html') if insert_data('gastos', values) else render_template('fail_insert_data.html')
+
+
+@app.route('/insert_data_bascula', methods=["POST"])
+def insert_data_bascula():
+   values = {
+      'grasa_corporal': [request.form.get('grasa_corporal')],
+      'agua': [request.form.get('agua')],
+      'proteina': [request.form.get('proteina')],
+      'metabolismo_basal': [request.form.get('metabolismo_basal')],
+      'grasa_visceral': [request.form.get('grasa_visceral')],
+      'musculo': [request.form.get('musculo')],
+      'masa_osea': [float(request.form.get('masa_osea'))],
+      'peso': [request.form.get('peso')],
+      'fecha': [datetime.strptime(request.form.get('fecha'), '%Y-%m-%d').date()]
+      }
+
+   return render_template('success_insert_data.html') if insert_data('bascula', values) else render_template('fail_insert_data.html')
+
 
 @app.route('/healthcheck')
 def healthcheck():

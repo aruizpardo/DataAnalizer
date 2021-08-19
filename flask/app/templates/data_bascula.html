@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Formulario de peso</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/home.css') }}">
+    </head>
+    <body>
+        <form id="gastos" method="POST" action="{{ url_for('insert_data_bascula') }}">
+            <table>
+                <tr>
+                    <td>
+                        <label for="grasa_corporal">Grasa corporal: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="grasa_corporal" name="grasa_corporal" value="0.00" min="0" max="100" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="agua">Agua: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="agua" name="agua" value="0.00" min="0" max="100" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="proteina">Proteina: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="proteina" name="proteina" value="0.00" min="0" max="100" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="metabolismo_basal">Metabolismo basal: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="metabolismo_basal" name="metabolismo_basal" value="0" min="0"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="grasa_visceral">Grasa visceral: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="grasa_visceral" name="grasa_visceral" value="0" min="0"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="musculo">Músculo: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="musculo" name="musculo" value="0.00" min="0" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="masa_osea">Masa osea: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="masa_osea" name="masa_osea" value="0.00" min="0" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="peso">Peso total: </label>
+                    </td>
+                    <td>
+                        <input required type="number" id="peso" name="peso" value="0.00" min="0" step=".01"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="fecha">Fecha: </label>
+                    </td>
+                    <td>
+                        <input type="date" id="fecha" name="fecha" />
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>
